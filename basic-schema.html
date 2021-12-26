@@ -1,0 +1,104 @@
+<div class="sec-wrap">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="image-wrap">
+                    <figure>
+                        {% if section.settings.enableAboutImage %}
+                        <img src="{{ section.settings.aboutImage | img_url: '1024x1024' }}"
+                            alt="{{ image.alt | escape }}">
+                        {% endif %}
+                    </figure>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="content-wrap">
+                    {%- if section.settings.enableAboutHeading -%}
+                    <h1 style="text-align: {{ section.settings.horizontal_alignment }}">{{section.settings.aboutHeading
+                        }}</h1>
+                    {%- endif -%}
+                    {%- if section.settings.enableAboutDescription -%}
+                    <p>{{section.settings.aboutDescription }}</p>
+                    {%- endif -%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% schema %}
+{
+"name": "Custom About",
+"settings": [
+{
+"id": "aboutImage",
+"type": "image_picker",
+"label": "About Image"
+},
+{
+"type": "checkbox",
+"id": "enableAboutImage",
+"label": "Enable Image",
+"default": true
+},
+{
+"id": "aboutHeading",
+"type": "text",
+"label": "About Heading",
+"default": "About Us Mv"
+},
+{
+"type": "checkbox",
+"id": "enableAboutHeading",
+"label": "Enable Heading",
+"default": true
+},
+{
+"type": "select",
+"id": "horizontal_alignment",
+"label": "Heading alignment",
+"options": [
+{
+"value": "left",
+"label": "Left"
+},
+{
+"value": "center",
+"label": "Center"
+},
+{
+"value": "right",
+"label": "Right"
+}
+],
+"default": "left"
+},
+{
+"id": "aboutDescription",
+"type": "text",
+"label": "About Content",
+"default": "About Us Mv"
+},
+{
+"type": "checkbox",
+"id": "enableAboutDescription",
+"label": "Enable Description",
+"default": true
+}
+],
+"presets": [
+{
+"name": "About Section",
+"category": "Custom About Sec"
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

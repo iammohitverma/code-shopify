@@ -1,0 +1,135 @@
+<div class="sec-wrap">
+    <div class="card-gallery">
+        <div class="container">
+            <div class="head">
+                {%- if section.settings.enableGalleryTitle -%}
+                <h2 style="text-align: {{ section.settings.gallery_title_alignment }}">{{
+                    section.settings.card_gallery_title }}</h2>
+                {%- endif -%}
+                {%- if section.settings.enableGallerySubTitle -%}
+                <p style="text-align: {{ section.settings.gallery_sub_title_alignment }}">{{
+                    section.settings.card_gallery_subtitle }}</p>
+                {%- endif -%}
+            </div>
+            <div class="row">
+                {% for block in section.blocks %}
+                {%- if block.settings.show_gallery_image -%}
+                <div class="col-md-4">
+                    <div class="box">
+                        <a href="{{ block.settings.image_link }}">
+                            <figure>
+                                <img src="{{ block.settings.galleryImage | image_url: width: 800 }}"
+                                    alt="{{ block.settings.image.alt }}" />
+                            </figure>
+                        </a>
+                    </div>
+                </div>
+                {%- endif -%}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% schema %}
+{
+"name": "Custom Gallery",
+"settings": [
+{
+"id": "card_gallery_title",
+"type": "text",
+"label": "Gallery Title",
+"default": "Card Gallery Mv"
+},
+{
+"type": "checkbox",
+"id": "enableGalleryTitle",
+"label": "Enable Gallery Title",
+"default": true
+},
+{
+"type": "select",
+"id": "gallery_title_alignment",
+"label": "Title alignment",
+"options": [
+{
+"value": "left",
+"label": "Left"
+},
+{
+"value": "center",
+"label": "Center"
+},
+{
+"value": "right",
+"label": "Right"
+}
+],
+"default": "center"
+},
+{
+"id": "card_gallery_subtitle",
+"type": "text",
+"label": "Gallery Sub Title",
+"default": "Card Gallery Mv"
+},
+{
+"type": "checkbox",
+"id": "enableGallerySubTitle",
+"label": "Enable Gallery Sub Title",
+"default": true
+},
+{
+"type": "select",
+"id": "gallery_sub_title_alignment",
+"label": "Sub Title alignment",
+"options": [
+{
+"value": "left",
+"label": "Left"
+},
+{
+"value": "center",
+"label": "Center"
+},
+{
+"value": "right",
+"label": "Right"
+}
+],
+"default": "center"
+}
+],
+"blocks" : [
+{
+"type" : "gallery",
+"name" : "Gallery Image",
+"settings" : [
+{
+"id": "galleryImage",
+"type": "image_picker",
+"label": "Image"
+},
+{
+"type": "url",
+"id": "image_link",
+"label": "Image link"
+},
+{
+"type": "checkbox",
+"id": "show_gallery_image",
+"label": "Show Image",
+"default": true
+}
+]
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

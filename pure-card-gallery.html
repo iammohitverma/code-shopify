@@ -1,0 +1,181 @@
+<div class="sec-wrap">
+    <div class="card-gallery">
+        <div class="container">
+            <div class="head">
+                {%- if section.settings.enableGalleryTitle -%}
+                <h2 style="text-align: {{ section.settings.gallery_title_alignment }}">{{
+                    section.settings.card_gallery_title }}</h2>
+                {%- endif -%}
+                {%- if section.settings.enableGallerySubTitle -%}
+                <p style="text-align: {{ section.settings.gallery_sub_title_alignment }}">{{
+                    section.settings.card_gallery_subtitle }}</p>
+                {%- endif -%}
+            </div>
+            <div class="row">
+                {% for block in section.blocks %}
+                <div class="col-md-4">
+                    <div class="card">
+                        {%- if block.settings.show_card_image -%}
+                        <figure>
+                            <img src="{{ block.settings.cardImage | image_url: width: 800 }}"
+                                alt="{{ block.settings.image.alt }}" />
+                        </figure>
+                        {%- endif -%}
+                        <div class="card-body">
+                            {%- if block.settings.enableCardTitle -%}
+                            <h5 class="card-title">{{ block.settings.card_title }}</h5>
+                            {%- endif -%}
+                            {%- if block.settings.enableCardText -%}
+                            <p class="card-text">{{ block.settings.card_text }}</p>
+                            {%- endif -%}
+                            {%- if block.settings.enableCardBtn -%}
+                            <a href="{{ block.settings.btn_link }}" class="btn btn-primary">{{
+                                block.settings.card_btn_text }}</a>
+                            {%- endif -%}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% schema %}
+{
+"name": "Custom Gallery",
+"settings": [
+{
+"id": "card_gallery_title",
+"type": "text",
+"label": "Gallery Title",
+"default": "Card Gallery Mv"
+},
+{
+"type": "checkbox",
+"id": "enableGalleryTitle",
+"label": "Enable Gallery Title",
+"default": true
+},
+{
+"type": "select",
+"id": "gallery_title_alignment",
+"label": "Title alignment",
+"options": [
+{
+"value": "left",
+"label": "Left"
+},
+{
+"value": "center",
+"label": "Center"
+},
+{
+"value": "right",
+"label": "Right"
+}
+],
+"default": "center"
+},
+{
+"id": "card_gallery_subtitle",
+"type": "text",
+"label": "Gallery Sub Title",
+"default": "Card Gallery Mv"
+},
+{
+"type": "checkbox",
+"id": "enableGallerySubTitle",
+"label": "Enable Gallery Sub Title",
+"default": true
+},
+{
+"type": "select",
+"id": "gallery_sub_title_alignment",
+"label": "Sub Title alignment",
+"options": [
+{
+"value": "left",
+"label": "Left"
+},
+{
+"value": "center",
+"label": "Center"
+},
+{
+"value": "right",
+"label": "Right"
+}
+],
+"default": "center"
+}
+],
+"blocks" : [
+{
+"name" : "Card",
+"type" : "gallery",
+"settings" : [
+{
+"id": "cardImage",
+"type": "image_picker",
+"label": "Image"
+},
+{
+"type": "checkbox",
+"id": "show_card_image",
+"label": "Show Image",
+"default": true
+},
+{
+"id": "card_title",
+"type": "text",
+"label": "Card Title",
+"default": "Card Title Mv"
+},
+{
+"type": "checkbox",
+"id": "enableCardTitle",
+"label": "Enable Card Title",
+"default": true
+},
+{
+"id": "card_text",
+"type": "text",
+"label": "Card Text",
+"default": "Card Text Mv"
+},
+{
+"type": "checkbox",
+"id": "enableCardText",
+"label": "Enable Card Text",
+"default": true
+},
+{
+"id": "card_btn_text",
+"type": "text",
+"label": "Card Button",
+"default": "Read More"
+},
+{
+"type": "url",
+"id": "btn_link",
+"label": "Card Button link"
+},
+{
+"type": "checkbox",
+"id": "enableCardBtn",
+"label": "Enable Card Button",
+"default": true
+}
+]
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

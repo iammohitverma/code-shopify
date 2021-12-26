@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
+    <style>
+        .sec-wrap {
+            padding: 100px 0;
+        }
+
+        figure {
+            margin: 0;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .content-wrap {
+            padding-left: 100px;
+        }
+
+        .box {
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 991.98px) {
+            .content-wrap {
+                padding-left: 0;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .sec-wrap {
+                padding: 50px 0;
+            }
+
+            .row>*:not(:last-child) {
+                margin-bottom: 20px;
+            }
+
+            .card-gallery .row>* {
+                margin-bottom: 0px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sec-wrap">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="image-wrap left">
+                        <figure>
+                            <img src="./image.jpg" alt="">
+                        </figure>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="content-wrap right">
+                        <h1>About Us</h1>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, laudantium nesciunt similique
+                            a id inventore debitis nihil minima ducimus facere nobis, tempora quisquam doloribus dolorem
+                            quo. Expedita ipsum eligendi repudiandae tur adipisicing elit. Eos, laudantium nesciunt
+                            similique a id inventore debitis nihil minima ducimus facere nobis, tempora quisquam
+                            doloribus dolorem quo. Expedita ipsum eligendi repudiandae..</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sec-wrap">
+        <div class="card-gallery">
+            <div class="container">
+                <div class="head">
+                    <h2>Card Gallery</h2>
+                    <p>An Image Gallery is used when you want to display a series of photos in a gallery on a post or
+                        page.
+                    </p>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <img src="./image.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
