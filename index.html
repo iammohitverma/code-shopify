@@ -209,6 +209,20 @@ https://www.shopify.com/partners/blog/how-to-create-your-first-shopify-theme-sec
 https://community.shopify.com/c/shopify-design/product-pages-allow-pre-orders-for-products/m-p/625914/highlight/true#M160624
 
 ============
+
+
+
+
+Product pages - Get customization information for products
+===============
+https://community.shopify.com/c/shopify-design/product-pages-get-customization-information-for-products/m-p/616525
+
+
+Ui-elements-generator
+============
+https://ui-elements-generator.myshopify.com/pages/line-item-property
+============
+
 </code>
                                 </pre>
                                 </span>
@@ -377,6 +391,105 @@ https://community.shopify.com/c/shopify-design/product-pages-allow-pre-orders-fo
         {% endif %}
     {% endfor %}
 &lt;/p>
+</code>
+                                </pre>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <span class="text">
+                                    How to add Products Reviews (using App)
+                                </span>
+
+                                <span class="function">
+                                    <pre class="line-numbers">
+<code class="language-php">App Name :- Products Reviews
+Download and install then follow steps show in app.
+</code>
+                                </pre>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <span class="text">
+                                    Product pages - Add tabs to product descriptions
+                                </span>
+
+                                <span class="function">
+                                    <pre class="line-numbers">
+<code class="language-php">Open link mentioned below and follow steps:-
+https://community.shopify.com/c/shopify-design/product-pages-add-tabs-to-product-descriptions/td-p/615138
+</code>
+                                </pre>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <span class="text">
+                                    Add Product to Cart without Page Load Shopify
+                                </span>
+
+                                <span class="function">
+                                    <pre class="line-numbers">
+<code class="language-php">Open link mentioned below and follow steps:-
+https://community.shopify.com/c/shopify-design/product-pages-stay-on-the-product-page-after-adding-products-to/td-p/616440
+</code>
+                                </pre>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <span class="text">
+                                    Install Collapsible Accordion Tabs on Shopify Products in Liquid |
+                                </span>
+
+                                <span class="function">
+                                    <pre class="line-numbers">
+<code class="language-php">Open link mentioned below and follow steps:-
+https://www.envision.io/blogs/ecommerce-pulse/28832705-how-to-add-an-faq-accordion-to-your-shopify-store
+</code>
+                                </pre>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <span class="text">
+                                    Make Sticky Add to Cart bar on Shopify Product 
+                                </span>
+
+                                <span class="function">
+                                    <pre class="line-numbers">
+<code class="language-php">Open link mentioned below and follow steps:-
+&lt;a href="./sticky-add-to-cart.html">Check Here &lt;/a>
+</code>
+                                </pre>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <span class="text">
+                                    Direct Checkout with one Click | Skip Cart Page Shopify
+                                </span>
+
+                                <span class="function">
+                                    <pre class="line-numbers">
+<code class="language-php">In product template add this schema 
+{
+    "type": "checkbox",
+    "id": "enable_skip_cart",
+    "label": "Enable Skip Cart Option",
+    "default": false
+}
+//then add this above add to cart button
+{% if section.settings.enable_skip_cart %}
+    &lt;input type="hidden" name="return_to" value="/checkout/"/>
+{% endif %}
 </code>
                                 </pre>
                                 </span>
@@ -756,6 +869,100 @@ Then configure in css using
                                     <pre class="line-numbers">
 <code class="language-php">Create snippet and paste your HTML code there then call at where your schema defined using
 {% include "gallery-html" %}
+</code>
+                                </pre>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <span class="text">
+                                    Add custom text box on shopify Product
+                                </span>
+
+                                <span class="function">
+                                    <pre class="line-numbers">
+<code class="language-php">*In the Templates directory, click Add a new template.
+*Choose product from the drop-down menu, and name the template customizable:
+*Click Create template. This creates a copy of your product.liquid template called product.customizable.liquid. The new file will open in the code editor.
+*Find the following line of code:
+
+{% section 'product-template' %}
+ 
+
+Replace it with:
+
+{% section 'product-customizable-template' %}
+*Click Save.
+*In the Sections directory, click Add a new section.
+*Name your new section file product-customizable-template. Click Create section. Your new file will open in the code editor.
+*Delete all of the default code so that the file is empty. Copy all of the content from your product-template.liquid file (in the Sections directory), and paste it into your new product-customizable-template file.
+Click Save.
+
+*After that you need to follow some steps available at 
+https://ui-elements-generator.myshopify.com/pages/line-item-property
+
+</code>
+                                </pre>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <span class="text">
+                                    Product pages - Add color swatches to products
+                                </span>
+
+                                <span class="function">
+                                    <pre class="line-numbers">
+<code class="language-php">Follow the url below:-
+https://community.shopify.com/c/shopify-design/product-pages-add-color-swatches-to-products/td-p/616427
+</code>
+                                </pre>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <span class="text">
+                                    Products Templates
+                                </span>
+
+                                <span class="function">
+                                    <pre class="line-numbers">
+<code class="language-php">All Products Template :- Sections > collection-template.liquid
+Products Grid :- Snippets > product-grid-item.liquid
+</code>
+                                </pre>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <span class="text">
+                                    Easy way to Add js Quantity selector in shopify
+                                </span>
+
+                                <span class="function">
+                                    <pre class="line-numbers">
+<code class="language-php">&lt;a href="./easy-way-to-add-js-quantity-selector-in-shopify.html">Check Here&lt;/a>
+</code>
+                                </pre>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <span class="text">
+                                    Make Product Image & Thumbnail Slider with Slick 
+                                </span>
+
+                                <span class="function">
+                                    <pre class="line-numbers">
+<code class="language-php">//Use slick slider and get all product images using Loop below:-
+{% for image in product.images %}
+    &lt;img src="{{ image.src | img_url: '1024x1024' }}" alt="{{ image.alt | escape }}">
+{% endfor %}
 </code>
                                 </pre>
                                 </span>

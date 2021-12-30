@@ -1,0 +1,95 @@
+{% if template contains "product" %} {% assign feature_image = product.images.first %}
+<div class="sticky-cart">
+    <div class="container">
+        <div class="sticky-wrap">
+            <div class="product-detail-wrap">
+                <div class="img">
+                    <figure>
+                        <img src="{{ feature_image | img_url: 'medium'}}" />
+                    </figure>
+                </div>
+                <div class="content">
+                    <h2 class="title">{{ product.title }}</h2>
+                    <span class="price">{{ product.price | money }}</span>
+                </div>
+            </div>
+            <div class="addToCart">
+                <button id="btn-sticky-cart" class="btn btn-primary">Add to cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+<style>
+    .sticky-cart {
+        padding: 20px 0;
+        box-shadow: rgb(99 99 99 / 15%) 1px -1px 6px 0px;
+        position: fixed;
+        width: 100%;
+        left: 0;
+        bottom: -100%;
+        z-index: 1;
+        background: #fff;
+        transition: 0.5s;
+    }
+    
+    .sticky-cart.show {
+        bottom: 0%;
+    }
+    
+    .sticky-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .product-detail-wrap {
+        display: flex;
+        align-items: center;
+    }
+    
+    .sticky-wrap .img {
+        max-width: 100px;
+    }
+    
+    .sticky-wrap .title {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+    
+    .sticky-wrap .price {
+        font-size: 12px;
+    }
+    
+    .sticky-wrap .content {
+        padding-left: 20px;
+    }
+    
+    .sticky-cart {
+        padding: 20px 0;
+        box-shadow: rgb(99 99 99 / 15%) 1px -1px 6px 0px;
+    }
+</style>
+
+
+
+<script>
+    $(document).ready(function() {
+        var distance = $("#AddToCart").offset().top,
+            $window = $(window);
+
+        $window.scroll(function() {
+            if ($window.scrollTop() >= distance) {
+                $(".sticky-cart").addClass("show");
+            } else {
+                $(".sticky-cart").removeClass("show");
+            }
+        });
+
+        $("#btn-sticky-cart").click(function(e) {
+            $("#AddToCart").click();
+        });
+    });
+</script>
