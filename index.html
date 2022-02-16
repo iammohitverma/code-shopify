@@ -53,6 +53,117 @@
                 </div> -->
                 <div class="col-md-6 right">
                     <ul>
+                        <li id="cmnFunc">
+                            <div>
+                                <span class="text">
+                                    Create Local Environment using Themekit Shopify
+                                </span>
+
+                                <span class="function">
+                                    <pre class="line-numbers">
+<code class="language-javascript">Documentation
+&lt;a href="https://shopify.dev/themes/tools/theme-kit">https://shopify.dev/themes/tools/theme-kit&lt;/a>
+
+Install themekit using command
+choco install themekit
+
+after run command check themekit in your system at location
+C:\Program Files\themekit
+
+go to System Environment Variable
+click on path and create new with  =  C:\Program Files\themekit
+
+Create config.yml
+and add this code 
+development:
+  password: [your-theme-kit-password]
+  theme_id: "[your-theme-id]"
+  store: [your-store].myshopify.com
+
+go to Apps section in your store
+create new app there with name themekit
+and give theme template read write access to app
+
+open cmd and run command for download theme on local
+theme download 
+theme watch
+theme watch --allow-live
+</code>
+                                </pre>
+                                </span>
+                            </div>
+                        </li>
+                        <li id="cmnFunc">
+                            <div>
+                                <span class="text">
+                                    Create an Array in Liquid
+                                </span>
+
+                                <span class="function">
+                                    <pre class="line-numbers">
+<code class="language-javascript">{% assign fruits = ["orange", "apple", "peach"] %}
+{% assign fruits = "orange,apple,peach" | split: ',' %}
+{% for fruit in fruits %}
+    {{ fruit }}
+{% endfor %}
+</code>
+                                </pre>
+                                </span>
+                            </div>
+                        </li>
+                        <li id="cmnFunc">
+                            <div>
+                                <span class="text">
+                                    Create custom header in shopify
+                                </span>
+
+                                <span class="function">
+                                    <pre class="line-numbers">
+<code class="language-javascript">Paste code in header.liquid
+&lt;header class="liquid">
+    &lt;nav role="navigation">
+        &lt;ul>
+          {%- for link in linklists.main-menu.links -%}
+            &lt;li>
+              &lt;a href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>
+                {{ link.title }}
+              &lt;/a>
+      
+              {%- if link.links != blank -%}
+                &lt;ul>
+                  {%- for child_link in link.links -%}
+                    &lt;li>
+                      &lt;a href="{{ child_link.url }}" {% if child_link.active %}aria-current="page"{% endif %}>
+                        {{ child_link.title }}
+                      &lt;/a>
+      
+                      {%- if child_link.links != blank -%}
+                        &lt;ul>
+                          {%- for grandchild_link in child_link.links -%}
+                            &lt;li>
+                              &lt;a href="{{ grandchild_link.url }}" {% if grandchild_link.active %}aria-current="page"{% endif %}>
+                                {{ grandchild_link.title }}
+                              &lt;/a>
+                            &lt;/li>
+                          {%- endfor -%}
+                        &lt;/ul>
+                      {%- endif -%}
+      
+                    &lt;/li>
+                  {%- endfor -%}
+                &lt;/ul>
+              {%- endif -%}
+      
+            &lt;/li>
+          {%- endfor -%}
+        &lt;/ul>
+    &lt;/nav>
+&lt;/header>
+</code>
+                                </pre>
+                                </span>
+                            </div>
+                        </li>
 
                         <!--- getting content on front end --->
                         <li id="cmnFunc">
@@ -459,7 +570,7 @@ https://www.envision.io/blogs/ecommerce-pulse/28832705-how-to-add-an-faq-accordi
                         <li>
                             <div>
                                 <span class="text">
-                                    Make Sticky Add to Cart bar on Shopify Product 
+                                    Make Sticky Add to Cart bar on Shopify Product
                                 </span>
 
                                 <span class="function">
@@ -954,7 +1065,7 @@ Products Grid :- Snippets > product-grid-item.liquid
                         <li>
                             <div>
                                 <span class="text">
-                                    Make Product Image & Thumbnail Slider with Slick 
+                                    Make Product Image & Thumbnail Slider with Slick
                                 </span>
 
                                 <span class="function">
