@@ -73,21 +73,38 @@ C:\Program Files\themekit
 go to System Environment Variable
 click on path and create new with  =  C:\Program Files\themekit
 
+go to Settings > Apps and Sales channels in your store
+> Develop apps > create new app with name themekit
+go to Configuration > Admin API integration
+and give theme template read write access to app
+go to API credentials and install for generating access token 
+Copy and save your Admin API access token in a secure place.
+
+
 Create config.yml
 and add this code 
 development:
-  password: [your-theme-kit-password]
+  password: [Admin API access token]
   theme_id: "[your-theme-id]"
   store: [your-store].myshopify.com
 
-go to Apps section in your store
-create new app there with name themekit
-and give theme template read write access to app
+  eg :- '👇'
+development:
+  password: Admin API access token // App's access token
+  theme_id: "150896116011"
+  store: https://tm-demo-practice.myshopify.com
+
+
+you can also check my config.yml file '👇'
+./config.yml
 
 open cmd and run command for download theme on local
 theme download 
+
 theme watch
 theme watch --allow-live
+
+
 </code>
                                 </pre>
                                 </span>
@@ -1074,6 +1091,168 @@ Products Grid :- Snippets > product-grid-item.liquid
 {% for image in product.images %}
     &lt;img src="{{ image.src | img_url: '1024x1024' }}" alt="{{ image.alt | escape }}">
 {% endfor %}
+</code>
+                                </pre>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <span class="text">
+                                    Global common schema setting under theme settings > your setting
+                                </span>
+
+                                <span class="function">
+                                    <pre class="line-numbers">
+<code class="language-php">//Go to config folder > settings_schema.json
+paste in main [] square bracket live below:-
+[
+    {
+        old theme settings code
+    },
+    {
+        "name": "Custom Sec By MV",
+        "settings": [
+            {
+                "id": "custom_text_title",
+                "type": "text",
+                "label": "Custom Label",
+                "default": "Title"
+            }
+        ]
+    }
+]
+/*it will work globally across website
+eg:- like top bar 
+Need to change it on one place under theme settings, 
+then it will show in every places where it has been called.*/
+</code>
+                                </pre>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <span class="text">
+                                    Custom blog listing page in shopify custom template for display blogs
+                                </span>
+
+                                <span class="function">
+                                    <pre class="line-numbers">
+<code class="language-php">/*#by default blog page is ==> /blogs/news/
+create page then template and add this code in template file 
+assign template to custom blog page
+Loop over articles*/
+
+{% for article in blogs.news.articles limit:2 %}
+<!-- first image in blog post content -->
+    &lt;a href="{{ article.url }}" class="text-colored">
+        
+        <!-- if featured image display that -->
+        {% if article.image %}
+        &lt;div class="hero-image-new">
+            &lt;img src="{{ article | img_url: 'large' }}">
+        &lt;/div>
+        
+        {% else %}
+        <!-- if no featured image then display first image from post -->
+        
+        {% assign hero_image = '' %}
+        {% assign html_tags = article.excerpt_or_content | split: '<' %}
+        {% for html_tag in html_tags %}
+        {% assign img_check = html_tag | slice: 0,3 %}
+        {% if img_check == 'img' %}
+        {% assign img_tag = html_tag | split: '>' %}
+        {% assign hero_image = '<' | append: img_tag.first | append: '>' %}
+        {% break %}
+        {% endif %}
+        {% endfor %}
+        
+        {% if hero_image.size > 0 %}
+        &lt;div class="hero-image-new">{{ hero_image }}&lt;/div>
+        {% endif %}          
+        {% endif %}
+    &lt;/a>
+<!-- /first image in blog post content -->
+
+<!-- title -->
+&lt;h3>&lt;a href="{{ article.url }}">{{ article.title }}&lt;/a>&lt;/h3>
+
+&lt;p>{{ article.content | strip_html | truncate: 300}}&lt;/p>
+
+{% endfor %}
+</code>
+                                </pre>
+                                </span>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div>
+                                <span class="text">
+                                    Schema setting types
+                                </span>
+
+                                <span class="function">
+                                    <pre class="line-numbers">
+<code class="language-php">text
+image_picker
+gallery
+textarea
+richtext :- // mini ck editor
+    /*for rich text = set default value in html tag
+    eg- "default": "<p>Title</p>"*/
+checkbox
+radio :-
+    /*{
+        "type": "radio",
+        "id": "logo_aligment",
+        "label": "Logo alignment",
+        "options": [
+        {
+            "value": "left",
+            "label": "Left"
+        },
+        {
+            "value": "centered",
+            "label": "Centered"
+        }
+        ],
+        "default": "left"
+    }*/
+select
+range
+article //go to page for article obj 👇
+https://shopify.dev/docs/api/liquid/objects/article
+https://shopify.github.io/liquid/filters/date/
+blog //go to page for article obj 👇
+https://shopify.dev/docs/api/liquid/objects/blog
+</code>
+                                </pre>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <span class="text">
+                                    Create template in json
+                                </span>
+
+                                <span class="function">
+                                    <pre class="line-numbers">
+<code class="language-php">
+{
+    "sections": {
+      "main": {
+        "type": "your-section-name",
+        "settings": {
+          "padding_top": 28,
+          "padding_bottom": 28
+        }
+      }
+    },
+    "order": ["main"]
+}
 </code>
                                 </pre>
                                 </span>
