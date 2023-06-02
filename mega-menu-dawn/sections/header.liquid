@@ -1,0 +1,63 @@
+
+{% include "header-snip" %}
+
+{% schema %}
+    {
+    "name": "Header",
+    "settings": [
+        {
+          "id": "header_logo_text",
+          "type": "text",
+          "label": "Site Title",
+          "default": "Title"
+        },
+        {
+          "id": "header_logo_image",
+          "type": "image_picker",
+          "label": "Logo"
+        },
+        {
+          "id": "header_logo_position",
+          "type": "select",
+          "label": "Position",
+          "options": [
+            {
+            "value": "left",
+            "label": "Left"
+            },
+            {
+                "value": "center",
+                "label": "Center"
+            },
+            {
+                "value": "right",
+                "label": "Right"
+            }
+          ]
+        },
+        {
+          "id": "created_menu_list",
+          "type": "link_list",
+          "label": "Select Menu"
+        },
+        {
+          "type": "product",
+          "id": "shop-by-header-product",
+          "label": "Shop By"
+        },
+        {
+          "type": "product",
+          "id": "shop-retail-header-product",
+          "label": "Shop Retail"
+        },
+        {
+          "type": "product",
+          "id": "shop-marketplace-product",
+          "label": "Shop Marketplace"
+        }
+      ]
+    }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}

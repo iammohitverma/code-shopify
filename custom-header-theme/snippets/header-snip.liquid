@@ -1,0 +1,87 @@
+<header class="tm-custom-header">
+  <!--  <div class="topbar">
+  <div class="container"></div>
+  </div> --><div class="main">
+    <div class="container">
+      <div class="inner">
+        <a href="{{ shop.secure_url }}" class="logo">
+          {%- if section.settings.header_logo_image -%}
+            <img src="{{ section.settings.header_logo_image | img_url: '300x300' }}" alt="{{ image.alt | escape }}">
+          {% else %}
+            {{ section.settings.header_logo_text }}
+          {% endif %}
+        </a>
+        <button class="menu-toggle">
+          <ion-icon name="menu-outline"></ion-icon>
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+        <div class="nav-wrap">
+          <nav>
+            <ul>
+              {% for link in linklists[section.settings.created_menu_list].links %}
+                <li>
+                  {% comment %}
+                  for submenu
+                  {% endcomment %}
+                  {% if link.links != blank %}
+
+                    {% comment %} if li has submenu then show dropdown{% endcomment %}
+                    <div class="aWrap">
+                      <a href="{{ link.url }}">{{ link.title }}</a>
+                      <button class="toggleSubmenu">
+                        <ion-icon name="caret-down-outline"></ion-icon>
+                      </button>
+                    </div>
+
+                    {% comment %} submenu wrapper {% endcomment %}
+                    <ul class="submenu">
+                      {% for child_link in link.links %}
+                        <li>
+
+
+                          {% if child_link.links != blank %}
+
+                            {% comment %} if li has submenu then show dropdown{% endcomment %}
+                            <div class="aWrap">
+                              <a href="{{ link.url }}">{{ link.title }}</a>
+                              <button class="toggleSubmenu">
+                                <ion-icon name="caret-down-outline"></ion-icon>
+                              </button>
+                            </div>
+
+                            {% comment %}
+                            for nested submenu
+                            {% endcomment %}
+                            <ul class="nested-submenu">
+                              {% for grandchild_link in child_link.links %}
+                                <li>
+                                  <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
+                                </li>
+                              {% endfor %}
+                            </ul>
+
+                            {% comment %}child_link else{% endcomment %}
+                          {% else %}
+                            <a href="{{ link.url }}">{{ link.title }}</a>
+                          {% endif %}
+
+
+                        </li>
+                      {% endfor %}
+                    </ul>
+
+                    {% comment %}link else{% endcomment %}
+                  {% else %}
+                    <a href="{{ link.url }}">{{ link.title }}</a>
+                  {% endif %}
+
+
+                </li>
+              {% endfor %}
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

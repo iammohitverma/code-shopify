@@ -1,0 +1,29 @@
+
+{% include "header-snip" %}
+
+{% schema %}
+    {
+    "name": "Header",
+    "settings": [
+        {
+          "id": "header_logo_text",
+          "type": "text",
+          "label": "Site Title",
+          "default": "Title"
+        },
+        {
+          "id": "header_logo_image",
+          "type": "image_picker",
+          "label": "Logo"
+        },
+        {
+          "id": "created_menu_list",
+          "type": "link_list",
+          "label": "Select Menu"
+        }
+      ]
+    }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
