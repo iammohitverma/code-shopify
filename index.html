@@ -1258,6 +1258,297 @@ https://shopify.dev/docs/api/liquid/objects/blog
                                 </span>
                             </div>
                         </li>
+                        <li>
+                            <div>
+                                <span class="text"> Create Custom header </span>
+
+                                <span class="function">
+                                    <pre class="line-numbers">
+<code class="language-php">./custom-header-theme
+  ./mega-menu-dawn
+</code>
+                                </pre>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <span class="text"> Create Metafields in Shopify </span>
+
+                                <span class="function">
+                                    <pre class="line-numbers">
+<code class="language-php">Metafield used to create custom fields for single product
+and blog's single post.
+Metafields help you to customize the functionality and appearance of your Shopify
+store by letting you save specialized information that isn't usually captured
+in the Shopify admin.
+let's create metafield
+go to Admin > settings > Custom data > Choose part of store where you want to add eg: product
+click on Add Definition
+Enter your Metafield Name
+Select field type
+now your metafield field is created and showing in single product page
+Now get metafield's data on frontend by code below:-
+{{ your.namespace.and.key }}
+
+
+{% comment %}
+comment product shipping data tm start
+{% endcomment  %}
+  &lt;div class="product_shipping_data">
+    &lt;div class="inner">
+      &lt;div class="data_col">
+        &lt;div class="data_box">
+          &lt;span class="icon">
+           {{ product.metafields.custom.shipping_box_1_icon }}
+          &lt;/span>
+          &lt;div class="text">
+            &lt;h3>{{ product.metafields.custom.shipping_box_1_heading }} &lt;/h3>
+            &lt;h4>{{ product.metafields.custom.shipping_box_1_sub_heading }} &lt;/h4>
+            &lt;p>
+             {{ product.metafields.custom.shipping_box_1_text }}
+            &lt;/p>
+          &lt;/div>
+        &lt;/div>
+      &lt;/div>
+      &lt;div class="data_col">
+        &lt;div class="data_box">
+          &lt;span class="icon">
+           {{ product.metafields.custom.shipping_box_2_icon }}
+          &lt;/span>
+          &lt;div class="text">
+            &lt;h3>{{ product.metafields.custom.shipping_box_2_heading }} &lt;/h3>
+            &lt;h4>{{ product.metafields.custom.shipping_box_2_sub_heading }} &lt;/h4>
+           {{ product.metafields.custom.shipping_box_2_text }}
+          &lt;/div>
+        &lt;/div>
+      &lt;/div>
+      &lt;div class="data_col">
+        &lt;div class="data_box">
+          &lt;span class="icon">
+           {{ product.metafields.custom.shipping_box_3_icon }}
+          &lt;/span>
+          &lt;div class="text">
+            &lt;h3>{{ product.metafields.custom.shipping_box_3_heading }} &lt;/h3>
+            &lt;h4>{{ product.metafields.custom.shipping_box_3_sub_heading }} &lt;/h4>
+           {{ product.metafields.custom.shipping_box_3_text }}
+          &lt;/div>
+        &lt;/div>
+      &lt;/div>
+    &lt;/div>
+  &lt;/div>
+{% comment %}
+comment product shipping data tm end
+{% endcomment  %}
+
+</code>
+                                </pre>
+                                </span>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div>
+                                <span class="text">
+                                    display collection's metafield data in product page template
+                                </span>
+
+                                <span class="function">
+                                    <pre class="line-numbers">
+<code class="language-php">{% for collection in product.collections %}
+  {% assign minimumweek = collection.metafields.custom.minimumdate %}
+{% endfor %}
+{{ minimumweek  | times: 7 }}
+
+{% comment %}
+  condition for vendor only
+{% endcomment %}
+{% for collection in product.collections %}
+  {% if collection.title == product.vendor %}
+    {% assign minimumweek = collection.metafields.custom.minimumweek %}
+  {% endif %}
+{% endfor %}
+{% assign minimumday =  minimumweek  | times: 7 %}
+{% assign today = 'now' | date: '%s' | plus: 0 | date: '%Y-%m-%d' %}
+{% assign start_date = today | date: "%s" | plus: minimumday | date: "%Y-%m-%d" %}
+{{ start_date }}
+
+
+{% for collection in product.collections %}
+{% if collection.title == product.vendor %}
+{% assign minimumweek = collection.metafields.custom.minimumweek %}
+{% assign maximumweek = collection.metafields.custom.maximumweek %}
+{% endif %}
+{% endfor %}
+{% assign minimumday = minimumweek  | times: 7 | times: 24 | times: 60 | times: 60  %}
+{% assign maximumday = maximumweek  | times: 7 | times: 24 | times: 60 | times: 60  %}
+{% assign today = 'now' | date: '%s' | plus: 0 | date: '%Y-%m-%d' %}
+{% assign S_min_date = today | date: "%s" | plus: minimumday %}
+{% assign S_max_date = today | date: "%s" | plus: maximumday %}
+{% assign S_min_date_month = today | date: "%s" | plus: minimumday | date:"%m" %}
+{% assign S_max_date_month = today | date: "%s" | plus: maximumday | date:"%m" %}
+<span>Estimated. Ship Date:
+{% if S_min_date_month == S_max_date_month %}
+  {{ S_min_date | date: "%d" }}
+{% else %}
+  {{ S_min_date | date: "%d %b" }}
+{% endif %}
+ - {{ S_max_date | date:"%d %b %Y" }}</span>
+</code>
+                                </pre>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <span class="text">
+                                    Global common schema setting under theme settings > your
+                                    setting
+                                </span>
+
+                                <span class="function">
+                                    <pre class="line-numbers">
+<code class="language-php">//Go to config folder > settings_schema.json
+paste in main [] square bracket live below:-
+[
+    {
+        old theme settings code
+    },
+    {
+    "name": "Shipping Box 1 Content",
+    "settings": [
+      {
+        "id": "shipping_box_1_icon",
+        "type": "textarea",
+        "label": "Icon in HTML tag",
+        "default": "Title"
+      },
+      {
+        "id": "shipping_box_1_heading",
+        "type": "textarea",
+        "label": "Heading",
+        "default": "Title"
+      },
+      {
+        "id": "shipping_box_1_subheading",
+        "type": "textarea",
+        "label": "Subheading",
+        "default": "Title"
+      },
+      {
+        "id": "shipping_box_1_link",
+        "type": "textarea",
+        "label": "Link",
+        "default": "Title"
+      }
+    ]
+  },
+  {
+    "name": "Shipping Box 2 Content",
+    "settings": [
+      {
+        "id": "shipping_box_2_icon",
+        "type": "textarea",
+        "label": "Icon in HTML tag",
+        "default": "Title"
+      },
+      {
+        "id": "shipping_box_2_heading",
+        "type": "textarea",
+        "label": "Heading",
+        "default": "Title"
+      },
+      {
+        "id": "shipping_box_2_subheading",
+        "type": "textarea",
+        "label": "Subheading",
+        "default": "Title"
+      },
+      {
+        "id": "shipping_box_2_link",
+        "type": "textarea",
+        "label": "Link",
+        "default": "Title"
+      }
+    ]
+  },
+  {
+    "name": "Shipping Box 3 Content",
+    "settings": [
+      {
+        "id": "shipping_box_3_icon",
+        "type": "textarea",
+        "label": "Icon in HTML tag",
+        "default": "Title"
+      },
+      {
+        "id": "shipping_box_3_heading",
+        "type": "textarea",
+        "label": "Heading",
+        "default": "Title"
+      },
+      {
+        "id": "shipping_box_3_subheading",
+        "type": "textarea",
+        "label": "Subheading",
+        "default": "Title"
+      },
+      {
+        "id": "shipping_box_3_link",
+        "type": "textarea",
+        "label": "Link",
+        "default": "Title"
+      }
+    ]
+  }
+]
+
+<!-- Html Code -->
+&lt;div class="product_shipping_data">
+  &lt;div class="inner">
+    &lt;div class="data_col">
+      &lt;div class="data_box">
+        &lt;span class="icon">
+          {{ settings.shipping_box_1_icon }}
+        &lt;/span>
+        &lt;div class="text">
+          &lt;h3>{{ settings.shipping_box_1_heading }} &lt;/h3>
+          &lt;h4>{{ settings.shipping_box_1_subheading }} &lt;/h4>
+          &lt;p>{{ settings.shipping_box_1_link }} &lt;/p>
+        &lt;/div>
+      &lt;/div>
+    &lt;/div>
+    &lt;div class="data_col">
+      &lt;div class="data_box">
+        &lt;span class="icon">
+          {{ settings.shipping_box_2_icon }}
+        &lt;/span>
+        &lt;div class="text">
+          &lt;h3>{{ settings.shipping_box_2_heading }} &lt;/h3>
+          &lt;h4>{{ settings.shipping_box_2_subheading }} &lt;/h4>
+          &lt;p>{{ settings.shipping_box_2_link }} &lt;/p>
+        &lt;/div>
+      &lt;/div>
+    &lt;/div>
+    &lt;div class="data_col">
+      &lt;div class="data_box">
+        &lt;span class="icon">
+          {{ settings.shipping_box_2_icon }}
+        &lt;/span>
+        &lt;div class="text">
+          &lt;h3>{{ settings.shipping_box_3_heading }} &lt;/h3>
+          &lt;h4>{{ settings.shipping_box_3_subheading }} &lt;/h4>
+          &lt;p>{{ settings.shipping_box_3_link }} &lt;/p>
+        &lt;/div>
+      &lt;/div>
+    &lt;/div>
+  &lt;/div>
+&lt;/div>
+</code>
+                                </pre>
+                                </span>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
